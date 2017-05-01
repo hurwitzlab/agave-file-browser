@@ -110,8 +110,11 @@ class AgaveFileBrowser {
 		}
 	}
 
-	get_selected_nodes() {
-		let ids = this.element.jstree().get_selected();
-		let node = this.element.jstree().get_node(ids[0]);
-	}
+    get_selected_nodes() {
+        let self = this;
+        let nodes = this.element.jstree().get_selected().map(function (id) {
+            return self.element.jstree().get_node(id);
+        });
+        return nodes;
+    }
 }
