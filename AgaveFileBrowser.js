@@ -23,7 +23,8 @@ class AgaveFileBrowser {
 	update(path) {
 		let self = this;
 
-		this.get_path(path)
+		this.busy(true)
+            .get_path(path)
 		    .pipe(self.format)
 		    .done(self.render.bind(self));
 
@@ -77,7 +78,7 @@ class AgaveFileBrowser {
                     core: {
                         check_callback: true,
                         data: items
-                    }
+                    },
                 })
 		    	.bind("select_node.jstree",
                     function (event, data) {
@@ -107,8 +108,23 @@ class AgaveFileBrowser {
 			});
 			self.element.jstree().open_node(self.node);
             self.node.data.opened = true;
+            self.busy(false);
 		}
 	}
+
+    busy(enable) {
+        var self = this;
+
+        if (!self.node)
+            return self;
+
+        if (enable)
+            self.element.jstree().set_icon(self.node, 'spinner.gif');
+        else
+            self.element.jstree().set_icon(self.node, true);
+
+        return self;
+    }
 
     get_selected_nodes() {
         let self = this;
