@@ -8,15 +8,13 @@ class AgaveFileBrowser {
             return;
         }
         this.element = element;
-
-        this.userName  = params.userName;
         this.baseUrl   = params.baseUrl;
+        this.path      = params.path;
         this.authToken = params.authToken;
         this.selectCallback = params.selectCallback;
         this.formatCallback = params.formatCallback;
 
         // Initialize contents
-        self.treeInit = false;
         self.update();
 	}
 
@@ -35,7 +33,7 @@ class AgaveFileBrowser {
 		let self = this;
 
 		if (!path)
-			path = this.userName;
+			path = this.path;
 		let url = this.baseUrl + '/' + path;
 
 		return $.ajax({
