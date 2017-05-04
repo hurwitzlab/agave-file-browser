@@ -22,14 +22,14 @@ class AgaveFileBrowser {
 		let self = this;
 
 		this.busy(true)
-            .get_path(path)
+            .getPath(path)
 		    .pipe(self.format)
 		    .done(self.render.bind(self));
 
 		return this;
 	}
 
-	get_path(path) {
+	getPath(path) {
 		let self = this;
 
 		if (!path)
@@ -124,7 +124,7 @@ class AgaveFileBrowser {
         return self;
     }
 
-    get_selected_nodes() {
+    getSelectedNodes() {
         let self = this;
         let nodes = this.element.jstree().get_selected().map(function (id) {
             return self.element.jstree().get_node(id);
