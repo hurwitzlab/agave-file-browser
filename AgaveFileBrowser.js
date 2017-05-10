@@ -8,9 +8,10 @@ class AgaveFileBrowser {
             return;
         }
         this.element = element;
-        this.baseUrl   = params.baseUrl;
-        this.path      = params.path;
-        this.authToken = params.authToken;
+        this.baseUrl     = params.baseUrl;
+        this.path        = params.path;
+        this.busyIconUrl = params.busyIconUrl || 'spinner.gif';
+        this.authToken   = params.authToken;
         this.selectCallback = params.selectCallback;
         this.formatCallback = params.formatCallback;
 
@@ -117,7 +118,7 @@ class AgaveFileBrowser {
             return self;
 
         if (enable)
-            self.element.jstree().set_icon(self.node, 'spinner.gif');
+            self.element.jstree().set_icon(self.node, self.busyIconUrl);
         else
             self.element.jstree().set_icon(self.node, true);
 
