@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/hurwitzlab/agave-file-browser/issues"
   },
-  "homepage": "https://github.com/hurwitzlab/agave-file-browser#readme"
+  "homepage": "https://github.com/hurwitzlab/agave-file-browser#readme",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
 }
