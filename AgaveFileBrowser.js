@@ -133,3 +133,5 @@ class AgaveFileBrowser {
         return nodes;
     }
 }
+
+export { AgaveFileBrowser };
