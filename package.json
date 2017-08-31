@@ -1,0 +1,23 @@
+{
+  "name": "agave-file-browser",
+  "version": "1.0.0",
+  "description": "File browser for Cyverse Data Store using Agave API",
+  "main": "AgaveFileBrowser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hurwitzlab/agave-file-browser.git"
+  },
+  "keywords": [
+    "cyverse",
+    "agave"
+  ],
+  "author": "Matt Bomhoff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hurwitzlab/agave-file-browser/issues"
+  },
+  "homepage": "https://github.com/hurwitzlab/agave-file-browser#readme"
+}
