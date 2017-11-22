@@ -9,6 +9,7 @@ class AgaveFileBrowser {
         }
         this.element = element;
         this.baseUrl     = params.baseUrl;
+        this.queryParams = params.queryParams;
         this.path        = params.path;
         this.busyIconUrl = params.busyIconUrl || 'spinner.gif';
         this.authToken   = params.authToken;
@@ -35,7 +36,10 @@ class AgaveFileBrowser {
 
         if (!path)
             path = this.path;
+
         let url = this.baseUrl + '/' + path;
+        if (this.queryParams)
+            url += '?' + this.queryParams;
 
         return $.ajax({
             type: 'GET',
