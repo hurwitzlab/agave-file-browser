@@ -1,8 +1,8 @@
 class AgaveFileBrowser {
     constructor(params) {
-        let self = this;
+        var self = this;
 
-        let element = $('#'+params.elementId);
+        var element = $('#'+params.elementId);
         if (!params.elementID && !element) {
             console.error('Missing required target element');
             return;
@@ -21,7 +21,7 @@ class AgaveFileBrowser {
     }
 
     update(path) {
-        let self = this;
+        var self = this;
 
         this.busy(true)
             .getPath(path)
@@ -32,12 +32,12 @@ class AgaveFileBrowser {
     }
 
     getPath(path) {
-        let self = this;
+        var self = this;
 
         if (!path)
             path = this.path;
 
-        let url = this.baseUrl + '/' + path;
+        var url = this.baseUrl + '/' + path;
         if (this.queryParams)
             url += '?' + this.queryParams;
 
@@ -71,7 +71,7 @@ class AgaveFileBrowser {
     }
 
     render(items) {
-        let self = this;
+        var self = this;
 
         if (!self.treeInit) {
             self.treeInit = 1;
@@ -85,16 +85,16 @@ class AgaveFileBrowser {
                 })
                 .bind("select_node.jstree",
                     function (event, data) {
-                        let id = data.selected[0];
+                        var id = data.selected[0];
                         if (self.selectCallback) {
-                            let node = self.element.jstree().get_node(id);
+                            var node = self.element.jstree().get_node(id);
                             self.selectCallback(node);
                         }
                     }
                 )
                 .bind("dblclick.jstree",
                     function(event) {
-                        let node = $(event.target).closest("li");
+                        var node = $(event.target).closest("li");
                         self.node = self.element.jstree().get_node(node[0].id);
                         if (self.node.data.type === 'dir' && !self.node.data.opened)
                            setTimeout(self.update.bind(self, node[0].id), 10);
@@ -130,8 +130,8 @@ class AgaveFileBrowser {
     }
 
     getSelectedNodes() {
-        let self = this;
-        let nodes = this.element.jstree().get_selected().map(function (id) {
+        var self = this;
+        var nodes = this.element.jstree().get_selected().map(function (id) {
         console.log(id);
             return self.element.jstree().get_node(id);
         });
