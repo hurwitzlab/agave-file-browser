@@ -25,7 +25,7 @@ class AgaveFileBrowser {
 
         this.busy(true)
             .getPath(path)
-                .pipe(self.format.bind(self))
+                .pipe(self.format.bind(self, path))
                 .done(self.render.bind(self));
 
         return this;
@@ -51,16 +51,18 @@ class AgaveFileBrowser {
         });
     }
 
-    format(contents) {
-        if (!contents || !contents.result) {
+    format(path, response) {
+        console.log(path, " ", response);
+        if (!response) {
             console.warn('Empty response from server');
             return;
         }
 
         if (this.formatCallback)
-            return this.formatCallback.call(this, contents);
+            return this.formatCallback.call(this, path, response);
 
-        return contents.result.filter(function(item) { return (item.name != '.') }).map(function(item) {
+        // Default Agave response formatter
+        return response.result.filter(function(item) { return (item.name != '.') }).map(function(item) {
             return {
                 id: item.path,
                 text: item.name,
@@ -132,7 +134,7 @@ class AgaveFileBrowser {
     getSelectedNodes() {
         var self = this;
         var nodes = this.element.jstree().get_selected().map(function (id) {
-        console.log(id);
+            console.log(id);
             return self.element.jstree().get_node(id);
         });
         return nodes;
