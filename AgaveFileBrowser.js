@@ -15,6 +15,7 @@ class AgaveFileBrowser {
         this.authToken   = params.authToken;
         this.selectCallback = params.selectCallback;
         this.formatCallback = params.formatCallback;
+        this.updateCallback = params.updateCallback;
 
         // Initialize contents
         self.update();
@@ -26,7 +27,11 @@ class AgaveFileBrowser {
         this.busy(true)
             .getPath(path)
                 .pipe(self.format.bind(self, path))
-                .done(self.render.bind(self));
+                .then(self.render.bind(self))
+                .done(function() {
+                    if (self.updateCallback)
+                        self.updateCallback.call(this);
+                });
 
         return this;
     }
